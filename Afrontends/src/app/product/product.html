@@ -1,0 +1,17 @@
+<!-- product.component.html -->
+<div>
+    <h2>Products</h2>
+    <ul>
+      <li *ngFor="let product of products">
+        {{ product.ProductName }} - Category: {{ product.CategoryName }}
+        <button (click)="updateProduct(product.ProductId, 'Updated Product', 1)">Update</button>
+        <button (click)="deleteProduct(product.ProductId)">Delete</button>
+      </li>
+    </ul>
+  
+    <h2>Add Product</h2>
+    <input type="text" [(ngModel)]="newProductName" placeholder="New Product Name">
+    <input type="number" [(ngModel)]="newProductCategoryId" placeholder="Category ID">
+    <button (click)="addProduct(newProductName, newProductCategoryId)">Add Product</button>
+  </div>
+  

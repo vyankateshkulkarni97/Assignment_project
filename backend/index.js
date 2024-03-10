@@ -154,6 +154,30 @@ app.get('/all/category', async (req, res) => {
   });
 
 
+  app.get('/products', async (req, res) => {
+    const { page = 1, pageSize = 10 } = req.query;
+    const offset = (page - 1) * pageSize;
+  
+    try {
+      const query = `
+        SELECT 
+          Product.ProductId, 
+          Product.ProductName, 
+          Product.CategoryId, 
+          Category.CategoryName 
+        FROM Product 
+        INNER JOIN Category ON Product.CategoryId = Category.CategoryId 
+        LIMIT ?, ?;
+      `;
+      const [products] = await pool.query(query, [offset, parseInt(pageSize)]);
+      res.json(products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

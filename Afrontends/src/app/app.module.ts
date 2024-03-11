@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    // ... other components
+
     CategoryComponent,
     ProductComponent
   ],
@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    // ... other modules
+
   ],
   providers: [],
   bootstrap: [AppComponent]
